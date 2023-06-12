@@ -1,344 +1,91 @@
-//замикання
+// === TASK #1 ===
 
-// function createUrl(domain) {
-//   return function (url) {
-//     return `https://${url}.${domain}`;
-//   };
-// }
-
-// const comUrl = createUrl("com");
-// const comUa = createUrl("ua");
-
-// console.log(comUrl("google"));
-// console.log(comUrl("fb"));
-
-// console.log(comUa("google"));
-// console.log(comUa("fb"));
-
-//_________________________//
-//_________________________//
-//this
-
-// function hello() {
-//   console.log("hello", this);
-// }
-
-// hello();
-
-// const user = {
-//   name: "Ivan",
-//   city: "Odesa",
-//   sayHello: hello,
-// };
-
-// user.sayHello();
-//-----
-
-// function abc() {
-//   console.log("В функції");
-//   console.log(this);
-// }
-
-// abc();
-
-// document.querySelector("p").onclick = abc;
-
-// function changeColor() {
-//   this.style.background = 'green';
-// }
-
-// document.querySelector('div').onclick = changeColor;
-
-// let user = document.querySelectorAll('div');
-
-// user.forEach(function (element) {
-//   element.onclick = changeColor;
-// });
-
-//-----------
-
-// const showList = () => {
-//   console.log(this);
-// };
-
-// showList();
-
-// const list = {
-//   names: ["Ann", "Olga", "Nata"],
-//   showList: showList,
-// };
-
-// list.showList();
-
-//========= bind
-
-// function hello() {
-//   console.log(this);
-// }
-
-// const user = {
-//   name: "Ivan",
-//   age: 30,
-//   hello: hello,
-//   sayHelloWindow: hello.bind(window),
-//   info: function (city) {
-//     console.log(`Name is ${this.name}`);
-//     console.log(`Age is ${this.age}`);
-//     console.log(`City is ${city}`);
-//   },
-// };
-
-// const Ann = {
-//   name: "Anna",
-//   age: 23,
-// };
-
-// const Nata = {
-//   name: "Natalia",
-//   age: 50,
-// };
-
-// user.info.bind(Ann)("Kyiv");
-
-// const nataInfo = user.info.bind(Nata, "Odesa");
-// nataInfo();
-
-//========= call
-
-// const userInfo = {
-//   name: "name",
-//   age: 98,
-//   logInfo: function (job) {
-//     console.group(`${name} info:`);
-//     console.log(`Name is : ${this.name}`);
-//     console.log(`Age is : ${this.age}`);
-//     console.log(`Job is : ${job}`);
-//     console.groupEnd();
-//   },
-// };
-
-// const Vano = {
-//   name: "Ivan",
-//   age: 45,
-// };
-
-// userInfo.logInfo.call(Vano, "developer");
-
-//apply
-
-// const showUserInfo = {
-//   name: name,
-//   age: 87,
-//   logInfo: function (job, city) {
-//     console.group(`${name} info:`);
-//     console.log(`Name is : ${this.name}`);
-//     console.log(`Age is : ${this.age}`);
-//     console.log(`Job is : ${job}`);
-//     console.log(`City is : ${city}`);
-//     console.groupEnd();
-//   },
-// };
-
-// const Vano = {
-//   name: "Ivan",
-//   age: 45,
-// };
-
-// showUserInfo.logInfo.apply(Vano, ["developer", "Lviv"]);
-
-///////////////////////////////////
-///////////////////////////////////
-
-// const message = function (name, stars) {
-//   console.log(`${name}, Welcome to ${this.hotel}, stars ${stars}`);
-// };
-
-// const Bukovel = { hotel: "Bukovel" };
-// const Turist = { hotel: "Turist" };
-
-// message.call(Bukovel, "Ivan", "5");
-// message.call(Turist, "Ivan", "3");
-
-// message.apply(Bukovel, ["Ivan", "5"]);
-// message.apply(Turist, ["Ivan", "3"]);
-
-// message.bind(Bukovel, "Ivan", "5")();
-// message.bind(Turist, "Ivan", "3")();
-
-////////
-
-// const cart = {
-//   showItems() {
-//     console.log("В корзині: ", this.items);
-//   },
-// };
-
-// const woman = {
-//   items: ["Сукня, туфлі"],
-// };
-
-// const man = {
-//   items: ["Костюм, рубашка"],
-// };
-
-// const child = {
-//   items: ["майка, шорти"],
-// };
-
-// document
-//   .querySelector("#wom")
-//   .addEventListener("click", cart.showItems.bind(woman));
-
-// document
-//   .querySelector("#man")
-//   .addEventListener("click", cart.showItems.bind(man));
-
-// document
-//   .querySelector("#kid")
-//   .addEventListener("click", cart.showItems.bind(child));
-// ////
-
-// const infoCar = {
-//   name: "BMW",
-//   model: "M7",
-//   color: "white",
-//   showInfo: function () {
+// const infoStud = {
+//   name: 'oleg',
+//   specialist: 'zvarshyk',
+//   grade: '7',
+//   missed: '12 lekcij',
+//   showinfo() {
 //     console.log(
-//       "Car: " + this.name + " model: " + this.model + " color: " + this.color
+//       `Uchen ${this.name} je strashnym specialistom jak ${this.specialist}, maje ocinku ${this.grade}, ale propustyv ${this.missed}`,
 //     );
 //   },
 // };
 
-// car2 = {
-//   name: "Opel",
-//   model: "XXX",
-//   color: "red",
+// student2 = {
+//   name: 'mykola veresen',
+//   specialist: 'vodij',
+//   grade: '8',
+//   missed: '8 lekcij',
 // };
 
-// infoCar.showInfo.bind(car2)();
-// infoCar.showInfo.call(car2);
-// infoCar.showInfo.apply(car2);
-
-//  == SAM ==
-
-// function createNewSum(n) {
-//   return function () {
-//     console.log(10 * n);
-//   };
-// }
-// const calc = createNewSum(5);
-// calc();
-
-// function createNewSum(n) {
-//   return function (num) {
-//     return n + num;
-//   };
-// }
-// const addFive = createNewSum(5);
-// console.log(addFive(10));
-
-// function createUrl(domain) {
-//   return function (url) {
-//     return `https://${url}.${domain}`;
-//   };
-// }
-
-// const comUrl = createUrl('com');
-// const comUa = createUrl('ua');
-
-// console.log(comUrl('google'));
-// console.log(comUa('google'));
-
-// == THIS ==
-
-// function hello() {
-//   console.log('hello', this);
-// }
-// hello();
-
-// const user = {
-//     name: "Ivan",
-//     city: "Vinnytsia",
-//     sayHello: hello,
-// }
-
-// user.sayHello()
-
-//======================
-// function abc() {
-//   console.log(this);
-// }
-// abc();
-
-// const message = function (name, stars) {
-//   console.log(`${name}, welcome to ${this.hotel}, stars ${stars}`);
+// student3 = {
+//   name: 'grycko',
+//   specialist: 'kranovshik',
+//   grade: '11',
+//   missed: '10 lekcij',
 // };
 
-// const Bukovel = { hotel: 'Bukovel' };
-// const Turist = { hotel: 'Turist' };
+// infoStud.showinfo.apply(student3);
+// infoStud.showinfo.call(student2);
+// infoStud.showinfo.bind(infoStud)();
 
-// // === МЕТОД CALL ===
+// === TASK #2 ===
 
-// message.call(Bukovel, 'Ivan', '5');
-// message.call(Turist, 'Petro', '3');
-
-// // === МЕТОД APPLY ===
-
-// message.apply(Bukovel, ['ivan', '4']);
-// message.apply(Turist, ['Petro', '3']);
-
-// // === МЕТОД BIND ===
-// message.bind(Bukovel, 'ivan', '4')();
-// message.bind(Turist, 'Petro', '3')();
-
-// === МОЖНО ТУТ ТАК САМО ЧЕРЕЗ CALL i APPLY в документі,вже як додавати на сторінку ===
-
-// const cart = {
-//   showItems() {
-//     console.log('V Korzyni :', this.items);
+// const vyznachennia = {
+//   natysnenaKnopka() {
+//     console.log('Bulo vybrano :', this.vybir);
 //   },
 // };
 
-// const woman = {
-//   items: ['suknia', 'tufli'],
+// const css = {
+//   vybir: ['css - ce ...'],
 // };
 
-// const man = {
-//   items: ['kostium', 'rubashka'],
-// };
-
-// const kid = {
-//   items: ['majka', 'shorty'],
+// const html = {
+//   vybir: ['html - ce ...'],
 // };
 
 // document
-//   .querySelector('#wom')
-//   .addEventListener('click', cart.showItems.bind(woman));
+//   .querySelector('#cs')
+//   .addEventListener('click', vyznachennia.natysnenaKnopka.bind(css));
 
 // document
-//   .querySelector('#man')
-//   .addEventListener('click', cart.showItems.bind(man));
+//   .querySelector('#ht')
+//   .addEventListener('click', vyznachennia.natysnenaKnopka.bind(html));
 
-// document
-//   .querySelector('#kid')
-//   .addEventListener('click', cart.showItems.bind(kid));
+// === TASK #3 ===
 
-// const infoCar = {
-//   name: 'bmw',
-//   model: 'm7',
-//   color: 'grey',
-//   showInfo() {
+// const infoFruit = {
+//   name: 'strawberry',
+//   price: '100',
+//   vaga: '10',
+//   showinfo() {
 //     console.log(
-//       ' Car: ' + this.name + ' model: ' + this.model + ' color: ' + this.color,
+//       `danyj frukt : ${this.name} koshtuje ${this.price} za kilogram `,
 //     );
 //   },
 // };
-// car2 = {
-//   name: 'mercered',
-//   model: 'c2227',
-//   color: 'black',
+
+// const banana = {
+//   name: 'banana',
+//   price: '30',
+//   vaga: '4.5',
 // };
 
-// infoCar.showInfo.bind(car2)();
-// infoCar.showInfo.call(car2);
-// infoCar.showInfo.apply(car2);
+// const cherry = {
+//   name: 'cherry',
+//   price: '58',
+//   vaga: '1.3',
+// };
+
+// const orange = {
+//   name: 'orange',
+//   price: '89',
+//   vaga: '3.4',
+// };
+
+// infoFruit.showinfo.call(banana);
+// infoFruit.showinfo.apply(cherry);
+// infoFruit.showinfo.bind(orange)();
+// infoFruit.showinfo.call(infoFruit);
